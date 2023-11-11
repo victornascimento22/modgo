@@ -22,4 +22,5 @@ func TestUser_ValidatePassword(t *testing.T) {
 	assert.True(t, user.ValidatePassword("123456"))
 	assert.False(t, user.ValidatePassword("123446"))
 	assert.False(t, user.ValidatePassword("1234567"))
+	assert.Equal(t, nil, user.ValidatePassword("123456"))  // Adicionando verificação do erro
 }

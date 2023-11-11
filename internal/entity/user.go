@@ -20,13 +20,14 @@ func NewUser(name, email, password string) (*User, error) {
 	}
 
 	return &User{
-		ID:       "id",       // You need to provide a valid ID here, not just the string "id"
+		ID:       entity.NewID(),       // You need to provide a valid ID here, not just the string "id"
 		Name:     name,
 		Email:    email,
 		Password: string(hash),
 	}, nil
 }
 
-func (u *User) ValidatePassword(password string) error {
-	return bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
+func (u *User) ValidatePassword(password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
+	return err == nil
 }
