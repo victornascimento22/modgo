@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/victornascimento22/modgo/internal/entity"
+	"github.com/victornascimento22/modgo/pkg/entity"
 	"golang.org/x/crypto/bcrypt"
 )
 
