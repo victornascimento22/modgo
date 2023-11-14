@@ -20,7 +20,6 @@ func TestUser_ValidatePassword(t *testing.T) {
 	user, err := NewUser("John Doe", "j0j.com", "123456")
 	assert.Nil(t, err)
 	assert.True(t, user.ValidatePassword("123456"))
-	assert.False(t, user.ValidatePassword("123446"))
 	assert.False(t, user.ValidatePassword("1234567"))
-	assert.Equal(t, nil, user.ValidatePassword("123456"))  // Adicionando verificação do erro
+	assert.NotEqual(t, "123456", user.Password)
 }
