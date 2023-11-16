@@ -1,13 +1,26 @@
 package database
 
-import "gorm.io/gorm"
+import (
+	"github.com/victornascimento22/modgo/internal/entity"
+	"gorm.io/gorm"
+)
 
-type Product struct {
+type User struct {
 	DB *gorm.DB
 }
 
-func NewProduct(db *gorm.DB) *Product {
-	return &Product{
-		DB: db,
+func NewUser(db *gorm.DB) *User {
+	return &User{DB: db}
+}
+
+func (u *User) Create(user *entity.User) error {
+	return u.DB.Create(user).Error
+}
+
+func (u *User) FindByEmail(email string) (*entity.User, error) {
+	var user entity.User
+	if err := u.DB.Where("email = ?", email).First(&user).Error; err != nil {
+		return nil, err
 	}
+	return &user, nil
 }
