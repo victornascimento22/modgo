@@ -1,8 +1,16 @@
 package database
 
-import "os/user"
+import "github.com/victornascimento22/modgo/internal/entity"
 
 type UserInterface interface {
-	Create(user *user.User) error
-	FindByEmail(email string) (*user.User, error)
+	Create(user *entity.User) error
+	FindByEmail(emaild string) (*entity.User, error)
+}
+
+type ProductInterface interface {
+	Create(product *entity.Product) error
+	FindAll(page, limit int, sort string) ([]entity.Product, error)
+	FindByID(id string) (*entity.Product, error)
+	Update(product *entity.Product) error
+	Delete(id string) error
 }
